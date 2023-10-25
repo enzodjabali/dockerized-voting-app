@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   postgres:
@@ -24,8 +24,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-vote
-    ports:
-      - 4567:8080
     depends_on:
       - redis
   
@@ -43,8 +41,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-result
-    ports:
-      - 5678:8888
     depends_on:
       - postgres
 
