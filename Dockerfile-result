@@ -1,0 +1,11 @@
+FROM node:18.4.0-alpine
+
+WORKDIR /usr/app
+
+COPY ./src/result/package.json .
+
+RUN npm install --quiet
+
+COPY ./src/result .
+
+CMD ["npm", "start"]

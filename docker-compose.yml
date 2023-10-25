@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: voting-app-postgres
+    image: postgres:16.0-alpine3.18
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      LANG: en_US.utf8
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    container_name: voting-app-redis
+    image: redis:7.2.2-alpine
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - redis:/data
+
+  vote:
+    container_name: voting-app-vote
+    build:
+      context: .
+      dockerfile: Dockerfile-vote
+    ports:
+      - 8080:8080
+    depends_on:
+      - redis
+  
+  worker:
+    container_name: voting-app-worker
+    build:
+      context: .
+      dockerfile: Dockerfile-worker
+    depends_on:
+      - postgres
+      - redis
+
+  result:
+    container_name: voting-app-result
+    build:
+      context: .
+      dockerfile: Dockerfile-result
+    ports:
+      - 8081:8888
+    depends_on:
+      - postgres
+
+volumes:
+  postgres-data: {}
+  redis:
+    driver: local
