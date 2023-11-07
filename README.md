@@ -31,6 +31,11 @@ docker compose up --build -d
 
 Nice! You can now access the app at `http://localhost:8888` 🎉
 
+Shut down the app:
+```bash
+docker compose down
+```
+
 <br>
 
 ## Explanation of the stack 📎
