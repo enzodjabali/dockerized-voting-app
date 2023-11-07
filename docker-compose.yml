@@ -11,6 +11,12 @@ services:
       LANG: en_US.utf8
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
 
   redis:
     container_name: voting-app-redis
@@ -21,6 +27,12 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
     volumes:
       - redis:/data
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
 
   vote:
     container_name: voting-app-vote
@@ -63,6 +75,12 @@ services:
     depends_on:
       - vote
       - result
+    healthcheck:
+      test: curl --fail http://nginx:80 || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
 
 volumes:
   postgres-data: {}
