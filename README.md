@@ -1,4 +1,5 @@
 # Dockerized voting app
+Live version available on [http](https://cats-vs-dogs.xyz/)
 
 ### Contributors :
 Enzo DJABALI<br>
@@ -29,7 +30,7 @@ docker compose up --build -d
 
 <br>
 
-Nice! You can now access the app at `http://localhost:8888` 🎉
+Nice! You can now access the app on `http://localhost:8888` 🎉
 
 Shut down the app:
 ```bash
