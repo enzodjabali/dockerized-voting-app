@@ -33,7 +33,7 @@ Nice! You can now access the app at `http://localhost:8888` 🎉
 
 <br>
 
-## Explaination of the stack 📎
+## Explanation of the stack 📎
 
 
 <i>Thanks and for reading 👋</i>
