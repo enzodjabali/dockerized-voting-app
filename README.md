@@ -7,7 +7,7 @@ Younes BADDOU<br>
 
 ## Deploy project with docker 🐳
 
-Install docker and docker-compose:
+Install docker:
 ```bash
 sudo apt install docker -y
 ```
