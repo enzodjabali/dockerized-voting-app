@@ -1,5 +1,5 @@
 # Dockerized voting app
-Live version available on [http](https://cats-vs-dogs.xyz/)
+Live version available on [https://cats-vs-dogs.xyz](https://cats-vs-dogs.xyz/)
 
 ### Contributors :
 Enzo DJABALI<br>
