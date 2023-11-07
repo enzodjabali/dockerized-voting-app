@@ -41,7 +41,7 @@ docker compose down
 
 ## Explanation of the stack 📎
 
-<img src="https://cdn.discordapp.com/attachments/894581763567931412/1171516625527263314/IMG_1846.jpg" height="400" />
+<img src="https://cdn.discordapp.com/attachments/894581763567931412/1171516625527263314/IMG_1846.jpg" height="500" />
 
 
 <i>Thanks and for reading 👋</i>
