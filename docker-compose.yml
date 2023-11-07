@@ -43,6 +43,12 @@ services:
       - ./.env:/code/.env
     depends_on:
       - redis
+    healthcheck:
+      test: curl --fail http://vote:8080 || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
   
   worker:
     container_name: voting-app-worker
@@ -64,12 +70,18 @@ services:
       - ./.env:/usr/app/.env
     depends_on:
       - postgres
-
+    healthcheck:
+      test: curl --fail http://result:8888 || exit 1
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 10s
+  
   nginx:
     container_name: voting-app-nginx
     image: nginx:1.25.3
     ports:
-      - '8888:80'
+      - '${PORT}:80'
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:

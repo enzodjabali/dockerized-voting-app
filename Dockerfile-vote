@@ -8,4 +8,6 @@ RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./src/vote .
 
+RUN apk update && apk add curl
+
 CMD ["python", "app.py"]

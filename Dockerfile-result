@@ -8,4 +8,6 @@ RUN npm install --quiet
 
 COPY ./src/result .
 
+RUN apk update && apk add curl
+
 CMD ["npm", "start"]
