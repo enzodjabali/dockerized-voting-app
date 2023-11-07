@@ -6,7 +6,7 @@ Enzo DJABALI<br>
 Baptiste LECLERT<br>
 Younes BADDOU<br>
 
-## Deploy project with docker 🐳
+## Deploy locally the project with docker 🐳
 
 Install docker:
 ```bash
@@ -44,4 +44,4 @@ docker compose down
 <img src="https://cdn.discordapp.com/attachments/894581763567931412/1171516625527263314/IMG_1846.jpg" height="500" />
 
 
-<i>Thanks and for reading 👋</i>
+<i>Thanks for reading 👋</i>
