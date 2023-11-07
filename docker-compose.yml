@@ -38,7 +38,7 @@ services:
       context: .
       dockerfile: Dockerfile-worker
     volumes:
-      - ./.env:/src/worker/.env
+      - ./.env:/App/.env
     depends_on:
       - postgres
       - redis
@@ -49,7 +49,7 @@ services:
       context: .
       dockerfile: Dockerfile-result
     volumes:
-      - ./.env:/App/.env
+      - ./.env:/usr/app/.env
     depends_on:
       - postgres
 
