@@ -1,3 +1,5 @@
+require('dotenv').config({path:'.env'})
+
 let express = require("express"),
   async = require("async"),
   pg = require("pg"),
@@ -23,7 +25,7 @@ io.sockets.on("connection", function (socket) {
 })
 
 const pool = new pg.Pool({
-  connectionString: "postgres://postgres:postgres@postgres/postgres",
+  connectionString: "postgres://" + process.env.POSTGRES_USER + ":" + process.env.POSTGRES_PASSWORD + "@postgres/" + process.env.POSTGRES_DB + "",
 })
 
 async.retry(

@@ -5,9 +5,9 @@ services:
     container_name: voting-app-postgres
     image: postgres:16.0-alpine3.18
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
       LANG: en_US.utf8
     volumes:
       - postgres-data:/var/lib/postgresql/data
@@ -16,6 +16,9 @@ services:
     container_name: voting-app-redis
     image: redis:7.2.2-alpine
     command: redis-server --save 20 1 --loglevel warning
+    environment:
+      - ALLOW_EMPTY_PASSWORD=no
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     volumes:
       - redis:/data
 
@@ -24,6 +27,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-vote
+    volumes:
+      - ./.env:/code/.env
     depends_on:
       - redis
   
@@ -32,6 +37,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-worker
+    volumes:
+      - ./.env:/src/worker/.env
     depends_on:
       - postgres
       - redis
@@ -41,6 +48,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-result
+    volumes:
+      - ./.env:/App/.env
     depends_on:
       - postgres
 
@@ -54,18 +63,6 @@ services:
     depends_on:
       - vote
       - result
-
-  # vault-server:
-  #   container_name: voting-app-vault-server
-  #   image: vault:1.13.3
-  #   ports:
-  #     - "8200:8200"
-  #   environment:
-  #     VAULT_ADDR: "http://0.0.0.0:8200"
-  #     VAULT_DEV_ROOT_TOKEN_ID: "vault-plaintext-root-token"
-  #   cap_add:
-  #     - IPC_LOCK
-
 
 volumes:
   postgres-data: {}
