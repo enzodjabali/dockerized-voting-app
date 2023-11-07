@@ -1,17 +1,15 @@
 # Dockerized voting app
 
-## Symfony BDE SUPINFO CAEN
-
 ### Contributors :
-Enzo DJABALI
-Baptiste LECLERT
-Younes BADDOU
+Enzo DJABALI<br>
+Baptiste LECLERT<br>
+Younes BADDOU<br>
 
 ## Deploy project with docker 🐳
 
 Install docker and docker-compose:
 ```bash
-sudo apt install docker -y && sudo apt install docker -y
+sudo apt install docker -y
 ```
 
 Add user to docker group (if not already added):
@@ -19,66 +17,19 @@ Add user to docker group (if not already added):
 sudo usermod -aG docker $USER
 ```
 
-Grant docker sock permission:
+Create a .env file (it stores the sensible information such as passwords):
 ```bash
-sudo chmod 666 /var/run/docker.sock
+cp .env.exemple .env
 ```
 
-Create a symbolic link to /usr/bin:
-```
-sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-```
-
-Restart docker service:
+Build and start the containers:
 ```bash
-sudo service docker restart
+docker compose up --build -d
 ```
 
-Clone the project:
-```bash
-git clone https://github.com/enzodjabali/bde-supinfo-caen
-```
+<br>
 
-Create and start containers:
-```bash
-cd bde-supinfo-caen/ && docker-compose up
-```
-<br />
-
-<b>Create a copy of the `.env` file then name it `.env.local` and fill it out</b>
-Database connection:
-```env
-DATABASE_URL="postgresql://symfony:PASSWORD@database:5432/app?serverVersion=13&charset=utf8"
-```
-
-<br />
-
-Connect to php container:
-```bash
-docker exec -it php sh
-```
-
-Install dependencies with composer:
-```sh
-composer install
-```
-
-Update var/ directory:
-```sh
-chmod -R 777 var/
-```
-
-Create database:
-```sh
-bin/console d:d:c
-```
-
-Migrate database:
-```sh
-bin/console d:m:m
-```
-
-Congrats! You can now access your app server at `localhost:8080` 🎉
+Nice! You can now access the app at `localhost:8888` 🎉
 
 <br>
 
